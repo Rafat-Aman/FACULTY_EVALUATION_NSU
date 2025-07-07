@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Faculty Rating</title>
+  <style>
+    body { font-family: sans-serif; padding: 10px; width: 200px; }
+    label { display: block; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h3>Rate the Faculty</h3>
+  <label>Knowledge: <input type="range" min="1" max="5" value="3" id="knowledge"></label>
+  <label>Clarity: <input type="range" min="1" max="5" value="3" id="clarity"></label>
+  <label>Helpfulness: <input type="range" min="1" max="5" value="3" id="helpfulness"></label>
+  <button id="submit">Auto-Fill</button>
+  <script src="popup.js"></script>
+</body>
+</html>
