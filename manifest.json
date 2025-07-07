@@ -1,18 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Faculty Evaluator",
+  "name": "Faculty Auto Rater",
   "version": "1.0",
-  "description": "Pop-up based faculty evaluation auto-filler",
+  "description": "Auto-fill faculty evaluations with selected rating",
   "permissions": ["scripting", "activeTab"],
   "action": {
-    "default_popup": "popup.html",
-    "default_icon": "icons/icon.png"
+    "default_popup": "popup.html"
   },
-  "content_scripts": [
-    {
-      "matches": ["*://*/*"],  
-      "js": ["content.js"]
-    }
-  ],
   "host_permissions": ["<all_urls>"]
 }

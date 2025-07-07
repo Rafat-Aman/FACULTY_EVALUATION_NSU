@@ -1,41 +1,27 @@
 document.getElementById("submit").addEventListener("click", async () => {
-  const knowledge = document.getElementById("knowledge").value;
-  const clarity = document.getElementById("clarity").value;
-  const helpfulness = document.getElementById("helpfulness").value;
+  const rating = parseInt(document.getElementById("rating").value);
 
-  const ratings = {
-    knowledge: parseInt(knowledge),
-    clarity: parseInt(clarity),
-    helpfulness: parseInt(helpfulness)
-  };
+  if (rating < 1 || rating > 5) {
+    alert("Rating must be between 1 and 5");
+    return;
+  }
 
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   chrome.scripting.executeScript({
     target: { tabId: tab.id },
-    func: autoFillForm,
-    args: [ratings]
+    func: autoFillRatings,
+    args: [rating]
   });
 });
 
-function autoFillForm(ratings) {
-  const questions = document.querySelectorAll('table tr');
-
-  const ratingMap = {
-    knowledge: ratings.knowledge,
-    clarity: ratings.clarity,
-    helpfulness: ratings.helpfulness
-  };
-
-  let qIndex = 0;
-  for (let key in ratingMap) {
-    const row = questions[qIndex];
-    if (!row) continue;
-
-    const radios = row.querySelectorAll('input[type=radio]');
-    const val = ratingMap[key] - 1; // assume radio buttons are 0-indexed
-    if (radios[val]) radios[val].click();
-
-    qIndex++;
+function autoFillRatings(rating) {
+  for (let i = 1; i <= 10; i++) {
+    const radios = document.querySelectorAll(`input[name="evaluate[${i}]"]`);
+    radios.forEach(radio => {
+      if (radio.value === rating.toString()) {
+        radio.click();
+      }
+    });
   }
 }
