@@ -3,15 +3,32 @@
 <head>
   <title>Faculty Auto Rater</title>
   <style>
-    body { font-family: sans-serif; padding: 10px; width: 200px; }
-    label { display: block; margin: 10px 0; }
+    body {
+      font-family: sans-serif;
+      padding: 10px;
+      width: 220px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+    }
+
+    #ratingValue {
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
   <h3>Auto Faculty Rating</h3>
   <label>
     Select rating (1–5): 
-    <input type="number" id="rating" min="1" max="5" value="5">
+    <span id="ratingValue">5</span>
+    <input type="range" id="rating" min="1" max="5" value="5">
   </label>
   <button id="submit">Auto Fill</button>
   <script src="popup.js"></script>
