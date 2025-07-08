@@ -1,10 +1,12 @@
-document.getElementById("submit").addEventListener("click", async () => {
-  const rating = parseInt(document.getElementById("rating").value);
+const ratingSlider = document.getElementById("rating");
+const ratingValue = document.getElementById("ratingValue");
 
-  if (rating < 1 || rating > 5) {
-    alert("Rating must be between 1 and 5");
-    return;
-  }
+ratingSlider.addEventListener("input", () => {
+  ratingValue.textContent = ratingSlider.value;
+});
+
+document.getElementById("submit").addEventListener("click", async () => {
+  const rating = parseInt(ratingSlider.value);
 
   const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
